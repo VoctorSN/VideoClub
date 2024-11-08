@@ -39,6 +39,7 @@ public class Conexion {
                 peli.setId(rs.getInt(1));
                 peliculas.add(peli);
             }
+            s.close();
             c.close();
             return peliculas;
         } catch (SQLException e) {
@@ -60,6 +61,7 @@ public class Conexion {
                         rs.getString(3), Tematica.valueOf(rs.getObject(4).toString()),
                         rs.getString(5), rs.getBoolean(6));
                 peli.setId(rs.getInt(1));
+            ps.close();
             c.close();
             return peli;
 
@@ -75,6 +77,7 @@ public class Conexion {
             PreparedStatement ps = c.prepareStatement("DELETE FROM PELICULAS WHERE ID = ?");
             ps.setInt(1,id);
             int res = ps.executeUpdate();
+            ps.close();
             c.close();
             return res;
 
@@ -96,6 +99,7 @@ public class Conexion {
             ps.setBoolean(5, peli.isDisponible());
             ps.setInt(6,id);
             int r = ps.executeUpdate();
+            ps.close();
             c.close();
             return r;
 
@@ -116,6 +120,7 @@ public class Conexion {
             ps.setString(4, peli.getGuion());
             ps.setBoolean(5, peli.isDisponible());
             int r = ps.executeUpdate();
+            ps.close();
             c.close();
             return r;
 
