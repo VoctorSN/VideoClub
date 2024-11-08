@@ -63,6 +63,10 @@ public class Prints {
         System.out.println("No es una tematica correcta, elige entre (Accion, Aventura, Ciencia_Ficcion, Romance, Terror)");
     }
 
+    public static void errorMenu() {
+        System.out.println("El numero tiene que estar entre el 1-6");
+    }
+
     public static void errorID() {
         System.out.println("Ocurrio un error con el ID");
     }
@@ -134,4 +138,17 @@ public class Prints {
             Prints.cambiarLinea();
             System.out.println();
         }
+
+    public static void displayMenu() {
+        System.out.println();
+        Prints.cambiarLinea();
+        System.out.println("1. Listado de películas\n" +
+                "2. Pintado de datos de una película\n" +
+                "3. Borrado de una película\n" +
+                "4. Modificar una película\n" +
+                "5. Crear nueva película\n" +
+                "6. Salir");
+        Prints.cambiarLinea();
+        System.out.println();
+    }
 }

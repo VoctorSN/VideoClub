@@ -5,16 +5,37 @@ import edu.badpals.Modelo.Pelicula;
 import edu.badpals.Vista.Inputs;
 import edu.badpals.Vista.Prints;
 
+import java.util.Objects;
+
 public class Controlador {
     private Conexion c = new Conexion();
     private Inputs i = new Inputs();
 
     public void Menu(){
-        listarPeliculas();
-        getPelicula();
-        eliminarPelicula();
-        modificarPelicula();
-        crearPelicula();
+        String r = i.Menu();
+        while(!Objects.equals(r, "6")){
+            switch (r){
+                case "1":
+                    listarPeliculas();
+                    break;
+                case "2":
+                    getPelicula();
+                    break;
+                case "3":
+                    eliminarPelicula();
+                    break;
+                case "4":
+                    modificarPelicula();
+                    break;
+                case "5":
+                    crearPelicula();
+                    break;
+                default:
+                    Prints.errorMenu();
+                    break;
+            }
+            r = i.Menu();
+        }
     }
 
     private void listarPeliculas() {

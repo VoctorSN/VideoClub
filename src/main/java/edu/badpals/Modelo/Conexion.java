@@ -39,6 +39,7 @@ public class Conexion {
                 peli.setId(rs.getInt(1));
                 peliculas.add(peli);
             }
+            c.close();
             return peliculas;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,6 +60,7 @@ public class Conexion {
                         rs.getString(3), Tematica.valueOf(rs.getObject(4).toString()),
                         rs.getString(5), rs.getBoolean(6));
                 peli.setId(rs.getInt(1));
+            c.close();
             return peli;
 
         } catch (SQLException e) {
@@ -72,7 +74,9 @@ public class Conexion {
             Connection c = makeConexion();
             PreparedStatement ps = c.prepareStatement("DELETE FROM PELICULAS WHERE ID = ?");
             ps.setInt(1,id);
-            return ps.executeUpdate();
+            int res = ps.executeUpdate();
+            c.close();
+            return res;
 
 
         } catch (SQLException e) {
@@ -91,7 +95,9 @@ public class Conexion {
             ps.setString(4, peli.getGuion());
             ps.setBoolean(5, peli.isDisponible());
             ps.setInt(6,id);
-            return ps.executeUpdate();
+            int r = ps.executeUpdate();
+            c.close();
+            return r;
 
 
         } catch (SQLException e) {
@@ -103,13 +109,15 @@ public class Conexion {
     public int insertarPelicula(Pelicula peli){
         try {
             Connection c = makeConexion();
-            PreparedStatement ps = c.prepareStatement("INSERT INTO PELICULAS titulo,protagonista,tematica,guion,disponible VALUES (?,?,?,?,?)");
+            PreparedStatement ps = c.prepareStatement("INSERT INTO PELICULAS (titulo,protagonista,tematica,guion,disponible) VALUES (?,?,?,?,?)");
             ps.setString(1, peli.getTitulo());
             ps.setString(2, peli.getProtagonista());
             ps.setObject(3, peli.getTematica().toString());
             ps.setString(4, peli.getGuion());
             ps.setBoolean(5, peli.isDisponible());
-            return ps.executeUpdate();
+            int r = ps.executeUpdate();
+            c.close();
+            return r;
 
 
         } catch (SQLException e) {

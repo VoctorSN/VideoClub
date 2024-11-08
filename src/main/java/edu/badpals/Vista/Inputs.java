@@ -29,6 +29,18 @@ public class Inputs {
         return id;
     }
 
+    public String Menu(){
+        String r;
+        Prints.displayMenu();
+        r = sc.next();
+        while (!r.matches("\\d+")) {
+            Prints.errorMenu();
+            Prints.displayMenu();
+            r = sc.nextLine();
+        }
+        return r;
+    }
+
     public Pelicula pedirPeli(){
         Pelicula peli = new Pelicula();
         Prints.crearPeli();
